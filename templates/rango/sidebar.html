@@ -1,0 +1,9 @@
+<div class="col-sm-3">
+  <nav class="nav-sidebar">
+      <div id="cats">
+      {% if cat_list %}
+      {% include 'rango/category_list.html' with cat_list=cat_list %}
+      {% endif %}
+      </div>
+  </nav>
+</div>

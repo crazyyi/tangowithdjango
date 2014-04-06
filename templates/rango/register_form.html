@@ -1,0 +1,11 @@
+{% load bootstrap3 %}
+<form class="form-horizontal" id="user_form" method="post" role="form" action="/rango/register/" enctype="multipart/form-data">
+		{% csrf_token %}
+		{% bootstrap_form user_form layout="horizontal" %}
+		{% bootstrap_form profile_form layout="horizontal" %}
+		{% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Register
+        </button>
+    	{% endbuttons %}
+</form>

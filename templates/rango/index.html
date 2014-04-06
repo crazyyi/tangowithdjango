@@ -1,0 +1,31 @@
+{% extends 'rango/base.html' %}
+
+{% block sidebar_block %}
+{% include 'rango/sidebar.html' %}
+{% endblock %}
+
+{% block body_block %}
+{% if user.is_authenticated %}
+        <h1>Rango says...hello {{ user.username }}!</h1>
+        {% else %}
+        <h1>Rango says... hello world!</h1>
+        {% endif %}
+	{% if categories %}
+	    <ul>
+		{% for category in categories %}
+		<li><a href="/rango/category/{{ category.url }}">{{ category.name }}</a></li>
+		{% endfor %}
+	    </ul>
+	{% else %}
+	    <strong>There are no categories present.</strong>
+	{% endif %}
+	{% if pages %}
+	    <ul>
+		{% for page in pages %}
+		<li><strong>{{ page.title }}</strong></li>
+		{% endfor %}
+	    </ul>
+	{% else %}
+	    <strong>There are no pages present. </strong>
+	{% endif %}	    
+{% endblock %}

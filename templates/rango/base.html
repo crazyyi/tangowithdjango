@@ -1,0 +1,75 @@
+{% load static %}
+
+{% load url from future %}
+
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<!-- Bootstrap -->
+    	<link href="{% static 'css/rango.css' %}" rel="stylesheet">
+    	<!--<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" media="screen">-->
+        <title>Rango - {% block title %}How to Tango with Django!{% endblock %}</title>
+    </head>
+
+    <body style="display:block; overflow-y: auto">
+    	<header class="navbar navbar-static-top navbar-inverse">
+    		<div class="container">
+        		<div class="navbar-header">
+        			<a class="navbar-brand" href="/rango/">Rango</a>
+        		</div>
+        		<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+               			<ul class="nav navbar-nav navbar-right">
+                   		{% if user.is_authenticated %}
+                    		<li class="navbar-text">Welcome, {{ user.username }}!</li>
+                    		<li><a href="/rango/logout/">Logout</a></li>
+                   		{% else %}
+                    		<li><a href="/rango/register/">Register</a></li>
+                    		<li><a href="/rango/login/">Login</a></li>
+                   		{% endif %}
+               			</ul>
+               			<ul class="nav navbar-nav">
+                   		{% if user.is_authenticated %}
+                    		<li><a href="/rango/restricted/">Restricted</a></li>
+                    		<li><a href="/rango/add_category/">Add Category</a></li>
+                   		{% endif %}
+                   			<li><a href="/rango/about/">About</a></li>
+               			</ul>
+           		</nav>
+    		</div>
+		</header>
+
+	<div id="wrap">
+	<div class="container">
+		{% block sidebar_block %}
+		{% endblock %}
+        <div class="col-sm-9">
+        	<div class="container-fluid">
+    			<div class="row-fluid">
+        			
+        <!--/span-->
+        			<div class="span9">
+            			{% block body_block %}
+            			{% endblock %}
+        			</div>
+        <!--/span-->
+    			</div>
+			</div>
+		</div>
+	</div>
+<!--/.fluid-container-->
+	</div>
+		<footer id="footer" role="contentinfo">
+    		<div class="container">
+        		<p class="text-muted">&copy; AFun production 2014</p>
+    		</div>
+		</footer>
+    <script src="{% static "/js/jquery.js" %}"></script>
+    	<!--<script src="{% static 'js/bootstrap.js' %}"></script>-->
+    </body>
+</html>
